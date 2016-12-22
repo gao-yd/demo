@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机</title>
+	<style>
+		html{
+			width:100%;
+			height:100%;
+		}
+		body{
+			margin:0;
+			padding:0;
+			width:100%;
+			height:100%;
+			color:#2E2D2D;
+		}
+		#main{
+			width:100%;
+			height:100%;
+			overflow: hidden;
+		}
+		#main h2{
+			margin-top:40px;
+			text-align: center;
+		}
+		#main ul{
+			width:590px;
+			margin:0 auto;
+			margin-top:30px;
+			padding:10px;
+			list-style: none;
+		}
+		@media screen and (max-width: 750px) {
+		    #main ul {
+		        width:100%;
+		    }
+		}
+		#main p{
+			margin-top:50px;
+			text-align: center;
+		}
+		#main p  button{
+			padding:8px;
+		}
+		#main ul li{
+			background-color: #E1E1E1;
+			color:#2E2D2D;
+			font-weight: 600;
+			display: inline-block;
+			border:1px solid gray;
+			margin:15px 10px;
+			padding:10px;
+
+		}
+	</style>
+
+	<script>
+		window.onload=function(){
+
+			var liData=["选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1","选项1"];
+
+			var btn = document.getElementById('btn');
+			var ul = document.getElementById('main').getElementsByTagName('ul')[0];
+			var li = ul.getElementsByTagName('li');
+			var timer;
+			var html=""
+			for(var item in liData){
+				html=html+"<li>"+liData[item]+"</li>";
+			}
+			ul.innerHTML=html;
+			btn.onclick=function(){
+				var liLength=li.length;
+				if(timer){
+					clearInterval(timer);
+					timer="";
+					btn.innerText="开 始";
+					return;
+				}
+				else{
+					btn.innerText="结 束";
+					timer=setInterval(function(){
+						var random=Math.floor(Math.random()*liLength);
+						for(var i=0;i<liLength;i++){
+							li[i].style.backgroundColor="#E1E1E1";
+						}
+						li[random].style.backgroundColor="red";
+					},100);
+				}
+				
+			};
+		};
+		
+	</script>
+</head>
+<body>
+	<div id="main">
+		<h2>随机数</h2>
+		<ul>
+
+		</ul>
+		<p>
+			<button id="btn">开 始</button>
+		</p>
+	</div>
+</body>
+</html>
